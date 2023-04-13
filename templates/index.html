@@ -116,15 +116,92 @@
             </script>
         </div>
         <div class="square">
-            <h1>Leaderboards</h1>
+            <h1>Continents</h1>
             <h1>----------------------</h1>
-            <h2>North America: <span id="value1">0</span></h2>
-            <h2>South America: <span id="value2">0</span></h2>
-            <h2>Europe: <span id="value3">0</span></h2>
-            <h2>Asia: <span id="value4">0</span></h2>
-            <h2>Oceania: <span id="value5">0</span></h2>
-            <h2>Africa: <span id="value6">0</span></h2>
-            <h2>Antartica: <span id="value7">0</span></h2>
+            <h2>North America: 
+                <span id="value1"></span>
+                <script>
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "https://api.countapi.xyz/get/mysite.com/1na");
+                    xhr.responseType = "json";
+                    xhr.onload = function() {
+                        document.getElementById("value1").textContent = this.response.value;
+                    }
+                    xhr.send();
+                </script>
+            </span></h2>
+            <h2>South America: 
+                <span id="value2"></span>
+                <script>
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "https://api.countapi.xyz/get/mysite.com/1sa");
+                    xhr.responseType = "json";
+                    xhr.onload = function() {
+                        document.getElementById("value2").textContent = this.response.value;
+                    }
+                    xhr.send();
+                </script>
+            </h2>
+            <h2>Europe: 
+                <span id="value3"></span>
+                <script>
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "https://api.countapi.xyz/get/mysite.com/1eu");
+                    xhr.responseType = "json";
+                    xhr.onload = function() {
+                        document.getElementById("value3").textContent = this.response.value;
+                    }
+                    xhr.send();
+                </script>
+            </h2>
+            <h2>Asia: 
+                <span id="value4"></span>
+                <script>
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "https://api.countapi.xyz/get/mysite.com/1as");
+                    xhr.responseType = "json";
+                    xhr.onload = function() {
+                        document.getElementById("value4").textContent = this.response.value;
+                    }
+                    xhr.send();
+                </script>
+            </h2>
+            <h2>Oceania: 
+                <span id="value5"></span>
+                <script>
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "https://api.countapi.xyz/get/mysite.com/1oc");
+                    xhr.responseType = "json";
+                    xhr.onload = function() {
+                        document.getElementById("value5").textContent = this.response.value;
+                    }
+                    xhr.send();
+                </script>
+            </h2>
+            <h2>Africa: 
+                <span id="value6"></span>
+                <script>
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "https://api.countapi.xyz/get/mysite.com/1af");
+                    xhr.responseType = "json";
+                    xhr.onload = function() {
+                        document.getElementById("value6").textContent = this.response.value;
+                    }
+                    xhr.send();
+                </script>
+            </h2>
+            <h2>Antartica: 
+                <span id="value7"></span>
+                <script>
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "https://api.countapi.xyz/get/mysite.com/1an");
+                    xhr.responseType = "json";
+                    xhr.onload = function() {
+                        document.getElementById("value7").textContent = this.response.value;
+                    }
+                    xhr.send();
+                </script>
+            </h2>
         </div>    
     </div>
 </div>
