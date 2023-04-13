@@ -14,7 +14,7 @@
                 <span id="value"></span>
                 <script>
                     var xhr = new XMLHttpRequest();
-                    xhr.open("GET", "https://api.countapi.xyz/get/mysite.com/goodclick");
+                    xhr.open("GET", "https://api.countapi.xyz/get/mysite.com/good_click");
                     xhr.responseType = "json";
                     xhr.onload = function() {
                         document.getElementById("value").textContent = this.response.value;
@@ -26,7 +26,7 @@
             <script>
                 function clicked() {
                     var xhr = new XMLHttpRequest();
-                    xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/goodclick");
+                    xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/good_click");
                     xhr.responseType = "json";
                     xhr.onload = function() {
                         document.getElementById("value").textContent = this.response.value;
@@ -35,30 +35,96 @@
                     geo()              
                 }
                 function geo() {
+                    var endpoint = 'http://ip-api.com/json/?fields=status,message,countryCode,continentCode';
+
                     var xhr = new XMLHttpRequest();
-                    var code;
-                    xhr.open("GET", "https://api.geoapify.com/v1/ipinfo?ip=24.191.75.93&apiKey=d548c5ed24604be6a9dd0d989631f783");
-                    xhr.responseType = "json";
-                    xhr.onload = function() {
-                        console.log(this.response.continent);
-                    }
-                    xhr.send(); 
-                    // if(code === "NA") {
-                    //     alert("Success");
-                    // }
+                    xhr.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            var response = JSON.parse(this.responseText);
+                            if(response.status !== 'success') {
+                                console.log('query failed: ' + response.message);
+                                return
+                            }
+                            if(response.continentCode == "NA") {
+                                var xhr = new XMLHttpRequest();
+                                xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1na");
+                                xhr.responseType = "json";
+                                xhr.onload = function() {
+                                    document.getElementById("value1").textContent = this.response.value;
+                                }
+                                xhr.send();
+                            }
+                            if(response.continentCode == "SA") {
+                                var xhr = new XMLHttpRequest();
+                                xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1sa");
+                                xhr.responseType = "json";
+                                xhr.onload = function() {
+                                    document.getElementById("value2").textContent = this.response.value;
+                                }
+                                xhr.send();
+                            }
+                            if(response.continentCode == "EU") {
+                                var xhr = new XMLHttpRequest();
+                                xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1eu");
+                                xhr.responseType = "json";
+                                xhr.onload = function() {
+                                    document.getElementById("value3").textContent = this.response.value;
+                                }
+                                xhr.send();
+                            }
+                            if(response.continentCode == "AS") {
+                                var xhr = new XMLHttpRequest();
+                                xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1as");
+                                xhr.responseType = "json";
+                                xhr.onload = function() {
+                                    document.getElementById("value4").textContent = this.response.value;
+                                }
+                                xhr.send();
+                            }
+                            if(response.continentCode == "AF") {
+                                var xhr = new XMLHttpRequest();
+                                xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1af");
+                                xhr.responseType = "json";
+                                xhr.onload = function() {
+                                    document.getElementById("value6").textContent = this.response.value;
+                                }
+                                xhr.send();
+                            }
+                            if(response.continentCode == "OC") {
+                                var xhr = new XMLHttpRequest();
+                                xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1oc");
+                                xhr.responseType = "json";
+                                xhr.onload = function() {
+                                    document.getElementById("value5").textContent = this.response.value;
+                                }
+                                xhr.send();
+                            }
+                            if(response.continentCode == "AN") {
+                                var xhr = new XMLHttpRequest();
+                                xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1an");
+                                xhr.responseType = "json";
+                                xhr.onload = function() {
+                                    document.getElementById("value7").textContent = this.response.value;
+                                }
+                                xhr.send();
+                            }
+                        }
+                    };
+                    xhr.open('GET', endpoint, true);
+                    xhr.send();
                 }
             </script>
         </div>
         <div class="square">
             <h1>Leaderboards</h1>
             <h1>----------------------</h1>
-            <h2>North America: </h2>
-            <h2>South America: </h2>
-            <h2>Europe: </h2>
-            <h2>Asia: </h2>
-            <h2>Australia: </h2>
-            <h2>Africa: </h2>
-            <h2>Antartica: </h2>
+            <h2>North America: <span id="value1">0</span></h2>
+            <h2>South America: <span id="value2">0</span></h2>
+            <h2>Europe: <span id="value3">0</span></h2>
+            <h2>Asia: <span id="value4">0</span></h2>
+            <h2>Oceania: <span id="value5">0</span></h2>
+            <h2>Africa: <span id="value6">0</span></h2>
+            <h2>Antartica: <span id="value7">0</span></h2>
         </div>    
     </div>
 </div>
