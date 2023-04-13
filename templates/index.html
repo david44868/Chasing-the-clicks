@@ -8,39 +8,58 @@
 {% block body %}
 <div id="box">
     <div id="main">
-        <script>
-            fetch("https://api.geoapify.com/v1/ipinfo?ip=24.191.75.93&apiKey=d548c5ed24604be6a9dd0d989631f783")
-            
-            .then(response => response.json())
-            .then(result => console.log(result))
-            .catch(error => alert('error', error));
-        </script>
-        <h1>
-            CLICKS:
-            <span id="value"></span>
+        <div class="square">
+            <h1 id="title">
+                CLICKS:
+                <span id="value"></span>
+                <script>
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "https://api.countapi.xyz/get/mysite.com/goodclick");
+                    xhr.responseType = "json";
+                    xhr.onload = function() {
+                        document.getElementById("value").textContent = this.response.value;
+                    }
+                    xhr.send();
+                </script>
+            </h1>
+            <button id="click" onclick="clicked()">Click</button>
             <script>
-                var xhr = new XMLHttpRequest();
-                xhr.open("GET", "https://api.countapi.xyz/get/mysite.com/goodclick");
-                xhr.responseType = "json";
-                xhr.onload = function() {
-                    document.getElementById("value").textContent = this.response.value;
+                function clicked() {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/goodclick");
+                    xhr.responseType = "json";
+                    xhr.onload = function() {
+                        document.getElementById("value").textContent = this.response.value;
+                    }
+                    xhr.send();
+                    geo()              
                 }
-                xhr.send();
+                function geo() {
+                    var xhr = new XMLHttpRequest();
+                    var code;
+                    xhr.open("GET", "https://api.geoapify.com/v1/ipinfo?ip=24.191.75.93&apiKey=d548c5ed24604be6a9dd0d989631f783");
+                    xhr.responseType = "json";
+                    xhr.onload = function() {
+                        code = this.response.continent.code;
+                    }
+                    xhr.send(); 
+                    if(code === "NA") {
+                        alert("Success");
+                    }
+                }
             </script>
-        </h1>
-        <button id="click" onclick="clicked()">Click</button>
-        <script>
-            function clicked() {
-                var xhr = new XMLHttpRequest();
-                xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/goodclick");
-                xhr.responseType = "json";
-                xhr.onload = function() {
-                    document.getElementById("value").textContent = this.response.value;
-                }
-                xhr.send();              
-            }
-        </script>
-        
+        </div>
+        <div class="square">
+            <h1>Leaderboards</h1>
+            <h1>----------------------</h1>
+            <h2>North America: </h2>
+            <h2>South America: </h2>
+            <h2>Europe: </h2>
+            <h2>Asia: </h2>
+            <h2>Australia: </h2>
+            <h2>Africa: </h2>
+            <h2>Antartica: </h2>
+        </div>    
     </div>
 </div>
 {% endblock %}
