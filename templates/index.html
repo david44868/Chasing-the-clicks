@@ -14,7 +14,7 @@
                 <span id="value"></span>
                 <script>
                     var xhr = new XMLHttpRequest();
-                    xhr.open("GET", "https://api.countapi.xyz/get/mysite.com/good_click");
+                    xhr.open("GET", "https://api.countapi.xyz/get/mysite/good_click");
                     xhr.responseType = "json";
                     xhr.onload = function() {
                         document.getElementById("value").textContent = this.response.value;
@@ -26,7 +26,7 @@
             <script>
                 function clicked() {
                     var xhr = new XMLHttpRequest();
-                    xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/good_click");
+                    xhr.open("GET", "https://api.countapi.xyz/hit/mysite/good_click");
                     xhr.responseType = "json";
                     xhr.onload = function() {
                         document.getElementById("value").textContent = this.response.value;
@@ -35,95 +35,76 @@
                     geo()              
                 }
                 function geo() {
-                    var endpoint = 'http://ip-api.com/json?fields=status,message,countryCode,continentCode';
-                    $.ajax({
-                    url: endpoint,
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function(data) {
-                        // Handle the API response
-                        console.log(data.continentCode);
-                    },
-                    error: function(xhr, status, error) {
-                        // Handle any errors that occur during the request
-                        console.log(error);
-                    }
-                    });
-                    // var xhr = new XMLHttpRequest();
-                    // xhr.onreadystatechange = function() {
-                    //     if (this.readyState == 4 && this.status == 200) {
-                    //         var response = JSON.parse(this.responseText);
-                    //         if(response.status !== 'success') {
-                    //             console.log('query failed: ' + response.message);
-                    //             return
-                    //         }
-                    //         if(response.continentCode == "NA") {
-                    //             var xhr = new XMLHttpRequest();
-                    //             xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1na");
-                    //             xhr.responseType = "json";
-                    //             xhr.onload = function() {
-                    //                 document.getElementById("value1").textContent = this.response.value;
-                    //             }
-                    //             xhr.send();
-                    //         }
-                    //         if(response.continentCode == "SA") {
-                    //             var xhr = new XMLHttpRequest();
-                    //             xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1sa");
-                    //             xhr.responseType = "json";
-                    //             xhr.onload = function() {
-                    //                 document.getElementById("value2").textContent = this.response.value;
-                    //             }
-                    //             xhr.send();
-                    //         }
-                    //         if(response.continentCode == "EU") {
-                    //             var xhr = new XMLHttpRequest();
-                    //             xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1eu");
-                    //             xhr.responseType = "json";
-                    //             xhr.onload = function() {
-                    //                 document.getElementById("value3").textContent = this.response.value;
-                    //             }
-                    //             xhr.send();
-                    //         }
-                    //         if(response.continentCode == "AS") {
-                    //             var xhr = new XMLHttpRequest();
-                    //             xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1as");
-                    //             xhr.responseType = "json";
-                    //             xhr.onload = function() {
-                    //                 document.getElementById("value4").textContent = this.response.value;
-                    //             }
-                    //             xhr.send();
-                    //         }
-                    //         if(response.continentCode == "AF") {
-                    //             var xhr = new XMLHttpRequest();
-                    //             xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1af");
-                    //             xhr.responseType = "json";
-                    //             xhr.onload = function() {
-                    //                 document.getElementById("value6").textContent = this.response.value;
-                    //             }
-                    //             xhr.send();
-                    //         }
-                    //         if(response.continentCode == "OC") {
-                    //             var xhr = new XMLHttpRequest();
-                    //             xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1oc");
-                    //             xhr.responseType = "json";
-                    //             xhr.onload = function() {
-                    //                 document.getElementById("value5").textContent = this.response.value;
-                    //             }
-                    //             xhr.send();
-                    //         }
-                    //         if(response.continentCode == "AN") {
-                    //             var xhr = new XMLHttpRequest();
-                    //             xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1an");
-                    //             xhr.responseType = "json";
-                    //             xhr.onload = function() {
-                    //                 document.getElementById("value7").textContent = this.response.value;
-                    //             }
-                    //             xhr.send();
-                    //         }
-                    //     }
-                    // };
-                    // xhr.open('GET', endpoint, true);
-                    // xhr.send();
+                    //var endpoint = 'http://ip-api.com/json?fields=status,message,countryCode,continentCode';
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "https://ipapi.co/json");
+                    xhr.responseType = "json";
+                    xhr.onload = function() {
+                        if(this.response["continent_code"] == "NA") {
+                                var xhr = new XMLHttpRequest();
+                                xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/2na");
+                                xhr.responseType = "json";
+                                xhr.onload = function() {
+                                    document.getElementById("value1").textContent = this.response.value;
+                                }
+                                xhr.send();
+                        }
+                        if(this.response["continent_code"] == "SA") {
+                            var xhr = new XMLHttpRequest();
+                            xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1sa");
+                            xhr.responseType = "json";
+                            xhr.onload = function() {
+                                document.getElementById("value2").textContent = this.response.value;
+                            }
+                            xhr.send();
+                        }
+                        if(this.response["continent_code"] == "EU") {
+                            var xhr = new XMLHttpRequest();
+                            xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/2eu");
+                            xhr.responseType = "json";
+                            xhr.onload = function() {
+                                document.getElementById("value3").textContent = this.response.value;
+                            }
+                            xhr.send();
+                        }
+                        if(this.response["continent_code"] == "AS") {
+                            var xhr = new XMLHttpRequest();
+                            xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/2as");
+                            xhr.responseType = "json";
+                            xhr.onload = function() {
+                                document.getElementById("value4").textContent = this.response.value;
+                            }
+                            xhr.send();
+                        }
+                        if(this.response["continent_code"] == "AF") {
+                            var xhr = new XMLHttpRequest();
+                            xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1af");
+                            xhr.responseType = "json";
+                            xhr.onload = function() {
+                                document.getElementById("value6").textContent = this.response.value;
+                            }
+                            xhr.send();
+                        }
+                        if(this.response["continent_code"] == "OC") {
+                            var xhr = new XMLHttpRequest();
+                            xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1oc");
+                            xhr.responseType = "json";
+                            xhr.onload = function() {
+                                document.getElementById("value5").textContent = this.response.value;
+                            }
+                            xhr.send();
+                        }
+                        if(this.response["continent_code"] == "AN") {
+                            var xhr = new XMLHttpRequest();
+                            xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1an");
+                            xhr.responseType = "json";
+                            xhr.onload = function() {
+                                document.getElementById("value7").textContent = this.response.value;
+                            }
+                            xhr.send();
+                        } 
+                    }                  
+                    xhr.send();
                 }
             </script>
         </div>
@@ -134,7 +115,7 @@
                 <span id="value1"></span>
                 <script>
                     var xhr = new XMLHttpRequest();
-                    xhr.open("GET", "https://api.countapi.xyz/get/mysite.com/1na");
+                    xhr.open("GET", "https://api.countapi.xyz/get/mysite.com/2na");
                     xhr.responseType = "json";
                     xhr.onload = function() {
                         document.getElementById("value1").textContent = this.response.value;
@@ -158,7 +139,7 @@
                 <span id="value3"></span>
                 <script>
                     var xhr = new XMLHttpRequest();
-                    xhr.open("GET", "https://api.countapi.xyz/get/mysite.com/1eu");
+                    xhr.open("GET", "https://api.countapi.xyz/get/mysite.com/2eu");
                     xhr.responseType = "json";
                     xhr.onload = function() {
                         document.getElementById("value3").textContent = this.response.value;
@@ -170,7 +151,7 @@
                 <span id="value4"></span>
                 <script>
                     var xhr = new XMLHttpRequest();
-                    xhr.open("GET", "https://api.countapi.xyz/get/mysite.com/1as");
+                    xhr.open("GET", "https://api.countapi.xyz/get/mysite.com/2as");
                     xhr.responseType = "json";
                     xhr.onload = function() {
                         document.getElementById("value4").textContent = this.response.value;
