@@ -36,81 +36,94 @@
                 }
                 function geo() {
                     var endpoint = 'http://ip-api.com/json?fields=status,message,countryCode,continentCode';
-                    var xhr = new XMLHttpRequest();
-                    xhr.onreadystatechange = function() {
-                        if (this.readyState == 4 && this.status == 200) {
-                            var response = JSON.parse(this.responseText);
-                            if(response.status !== 'success') {
-                                console.log('query failed: ' + response.message);
-                                return
-                            }
-                            if(response.continentCode == "NA") {
-                                var xhr = new XMLHttpRequest();
-                                xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1na");
-                                xhr.responseType = "json";
-                                xhr.onload = function() {
-                                    document.getElementById("value1").textContent = this.response.value;
-                                }
-                                xhr.send();
-                            }
-                            if(response.continentCode == "SA") {
-                                var xhr = new XMLHttpRequest();
-                                xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1sa");
-                                xhr.responseType = "json";
-                                xhr.onload = function() {
-                                    document.getElementById("value2").textContent = this.response.value;
-                                }
-                                xhr.send();
-                            }
-                            if(response.continentCode == "EU") {
-                                var xhr = new XMLHttpRequest();
-                                xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1eu");
-                                xhr.responseType = "json";
-                                xhr.onload = function() {
-                                    document.getElementById("value3").textContent = this.response.value;
-                                }
-                                xhr.send();
-                            }
-                            if(response.continentCode == "AS") {
-                                var xhr = new XMLHttpRequest();
-                                xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1as");
-                                xhr.responseType = "json";
-                                xhr.onload = function() {
-                                    document.getElementById("value4").textContent = this.response.value;
-                                }
-                                xhr.send();
-                            }
-                            if(response.continentCode == "AF") {
-                                var xhr = new XMLHttpRequest();
-                                xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1af");
-                                xhr.responseType = "json";
-                                xhr.onload = function() {
-                                    document.getElementById("value6").textContent = this.response.value;
-                                }
-                                xhr.send();
-                            }
-                            if(response.continentCode == "OC") {
-                                var xhr = new XMLHttpRequest();
-                                xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1oc");
-                                xhr.responseType = "json";
-                                xhr.onload = function() {
-                                    document.getElementById("value5").textContent = this.response.value;
-                                }
-                                xhr.send();
-                            }
-                            if(response.continentCode == "AN") {
-                                var xhr = new XMLHttpRequest();
-                                xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1an");
-                                xhr.responseType = "json";
-                                xhr.onload = function() {
-                                    document.getElementById("value7").textContent = this.response.value;
-                                }
-                                xhr.send();
-                            }
-                        }
-                    };
-                    xhr.open('GET', endpoint, true);
-                    xhr.send();
+                    $.ajax({
+                    url: endpoint,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        // Handle the API response
+                        console.log(data.continentCode);
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle any errors that occur during the request
+                        console.log(error);
+                    }
+                    });
+                    // var xhr = new XMLHttpRequest();
+                    // xhr.onreadystatechange = function() {
+                    //     if (this.readyState == 4 && this.status == 200) {
+                    //         var response = JSON.parse(this.responseText);
+                    //         if(response.status !== 'success') {
+                    //             console.log('query failed: ' + response.message);
+                    //             return
+                    //         }
+                    //         if(response.continentCode == "NA") {
+                    //             var xhr = new XMLHttpRequest();
+                    //             xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1na");
+                    //             xhr.responseType = "json";
+                    //             xhr.onload = function() {
+                    //                 document.getElementById("value1").textContent = this.response.value;
+                    //             }
+                    //             xhr.send();
+                    //         }
+                    //         if(response.continentCode == "SA") {
+                    //             var xhr = new XMLHttpRequest();
+                    //             xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1sa");
+                    //             xhr.responseType = "json";
+                    //             xhr.onload = function() {
+                    //                 document.getElementById("value2").textContent = this.response.value;
+                    //             }
+                    //             xhr.send();
+                    //         }
+                    //         if(response.continentCode == "EU") {
+                    //             var xhr = new XMLHttpRequest();
+                    //             xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1eu");
+                    //             xhr.responseType = "json";
+                    //             xhr.onload = function() {
+                    //                 document.getElementById("value3").textContent = this.response.value;
+                    //             }
+                    //             xhr.send();
+                    //         }
+                    //         if(response.continentCode == "AS") {
+                    //             var xhr = new XMLHttpRequest();
+                    //             xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1as");
+                    //             xhr.responseType = "json";
+                    //             xhr.onload = function() {
+                    //                 document.getElementById("value4").textContent = this.response.value;
+                    //             }
+                    //             xhr.send();
+                    //         }
+                    //         if(response.continentCode == "AF") {
+                    //             var xhr = new XMLHttpRequest();
+                    //             xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1af");
+                    //             xhr.responseType = "json";
+                    //             xhr.onload = function() {
+                    //                 document.getElementById("value6").textContent = this.response.value;
+                    //             }
+                    //             xhr.send();
+                    //         }
+                    //         if(response.continentCode == "OC") {
+                    //             var xhr = new XMLHttpRequest();
+                    //             xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1oc");
+                    //             xhr.responseType = "json";
+                    //             xhr.onload = function() {
+                    //                 document.getElementById("value5").textContent = this.response.value;
+                    //             }
+                    //             xhr.send();
+                    //         }
+                    //         if(response.continentCode == "AN") {
+                    //             var xhr = new XMLHttpRequest();
+                    //             xhr.open("GET", "https://api.countapi.xyz/hit/mysite.com/1an");
+                    //             xhr.responseType = "json";
+                    //             xhr.onload = function() {
+                    //                 document.getElementById("value7").textContent = this.response.value;
+                    //             }
+                    //             xhr.send();
+                    //         }
+                    //     }
+                    // };
+                    // xhr.open('GET', endpoint, true);
+                    // xhr.send();
                 }
             </script>
         </div>
