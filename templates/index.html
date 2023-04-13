@@ -40,12 +40,12 @@
                     xhr.open("GET", "https://api.geoapify.com/v1/ipinfo?ip=24.191.75.93&apiKey=d548c5ed24604be6a9dd0d989631f783");
                     xhr.responseType = "json";
                     xhr.onload = function() {
-                        code = this.response.continent.code;
+                        console.log(this.response.continent);
                     }
                     xhr.send(); 
-                    if(code === "NA") {
-                        alert("Success");
-                    }
+                    // if(code === "NA") {
+                    //     alert("Success");
+                    // }
                 }
             </script>
         </div>
